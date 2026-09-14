@@ -1,24 +1,8 @@
-use gtk::glib::DateTime;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, CenterBox, Label};
 use gtk4_layer_shell::{Edge, Layer, LayerShell};
 
-fn current_time() -> String {
-    let time = DateTime::now_local().expect("could not get local time");
-    let formatted = time.format("%H:%M:%S").expect("could not format time");
-    formatted.to_string()
-}
-
-fn start_clock(label: &Label) {
-    let l = label.clone();
-
-    gtk::glib::timeout_add_seconds_local(1, move || {
-        let time = current_time();
-        l.set_label(&time);
-
-        gtk::glib::ControlFlow::Continue
-    });
-}
+mod clock;
 
 fn build_ui(app: &Application) {
     if let Some(window) = app.windows().first() {
@@ -28,9 +12,7 @@ fn build_ui(app: &Application) {
 
     let layout = CenterBox::new();
 
-    let time_text = current_time();
-    let time_label = Label::new(Some(&time_text));
-    start_clock(&time_label);
+    let time_label = clock::build();
 
     let workspaces = Label::new(Some("workspaces"));
     let sys_info = Label::new(Some("system info"));

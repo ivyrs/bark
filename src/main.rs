@@ -1,7 +1,8 @@
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, CenterBox, Label};
+use gtk::{Application, ApplicationWindow, CenterBox};
 use gtk4_layer_shell::{Edge, Layer, LayerShell};
 
+mod battery;
 mod clock;
 mod compositors;
 mod workspaces;
@@ -15,9 +16,8 @@ fn build_ui(app: &Application) {
     let layout = CenterBox::new();
 
     let time_label = clock::build();
-
     let workspaces = workspaces::build();
-    let sys_info = Label::new(Some("system info"));
+    let sys_info = battery::build();
 
     layout.set_start_widget(Some(&time_label));
     layout.set_center_widget(Some(&workspaces));

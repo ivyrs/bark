@@ -2,8 +2,16 @@ use gtk::Label;
 use gtk::glib::DateTime;
 
 fn current_time() -> String {
-    let time = DateTime::now_local().expect("could not get local time");
-    let formatted = time.format("%H:%M:%S").expect("could not format time");
+    const UNKNOWN_TIME: &str = "--:--:--";
+
+    let Ok(time) = DateTime::now_local() else {
+        return UNKNOWN_TIME.to_owned();
+    };
+
+    let Ok(formatted) = time.format("%H:%M:%S") else {
+        return UNKNOWN_TIME.to_owned();
+    };
+
     formatted.to_string()
 }
 

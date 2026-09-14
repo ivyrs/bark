@@ -15,6 +15,7 @@
 
   packages = with pkgs; [
     pkg-config
+    gcc
 
     gtk4
     gtk4-layer-shell

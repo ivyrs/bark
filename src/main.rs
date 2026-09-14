@@ -3,6 +3,8 @@ use gtk::{Application, ApplicationWindow, CenterBox, Label};
 use gtk4_layer_shell::{Edge, Layer, LayerShell};
 
 mod clock;
+mod compositors;
+mod workspaces;
 
 fn build_ui(app: &Application) {
     if let Some(window) = app.windows().first() {
@@ -14,7 +16,7 @@ fn build_ui(app: &Application) {
 
     let time_label = clock::build();
 
-    let workspaces = Label::new(Some("workspaces"));
+    let workspaces = workspaces::build();
     let sys_info = Label::new(Some("system info"));
 
     layout.set_start_widget(Some(&time_label));

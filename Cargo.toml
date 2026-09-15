@@ -1,8 +1,22 @@
 [package]
-name = "bark"
+name = "bark-shell"
 version = "0.1.0"
 edition = "2024"
 license = "GPL-3.0-only"
+description = "A work-in-progress GTK4 desktop shell for niri"
+readme = "README.md"
+repository = "https://github.com/ivyrs/bark"
+keywords = ["wayland", "niri", "gtk"]
+categories = ["gui"]
+
+exclude = [
+    "/.opencode/**",
+    "AGENTS.md"
+]
+
+[[bin]]
+name = "bark"
+path = "src/main.rs"
 
 [dependencies]
 color-eyre = "0.6.5"

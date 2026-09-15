@@ -39,7 +39,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "bark"
+name = "bark-shell"
 version = "0.1.0"
 dependencies = [
  "color-eyre",

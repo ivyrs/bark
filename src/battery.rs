@@ -13,6 +13,14 @@ fn battery_text() -> io::Result<String> {
             continue;
         }
 
+        let Ok(scope) = fs::read_to_string(path.join("scope")) else {
+            continue;
+        };
+
+        if scope.trim() != "System" {
+            continue;
+        }
+
         let capacity = fs::read_to_string(path.join("capacity"))?;
         let status = fs::read_to_string(path.join("status"))?;
         return Ok(format!("{}% {}", capacity.trim(), status.trim()));
